@@ -1,0 +1,21 @@
+create table user(
+	id int(10) key auto_increment,
+	name varchar(20) not null,
+	salary float(10,4),
+	ys boolean default 1
+);
+alter table user add age tinyint(2) default 18 after salary; 
+alter table user drop age; 
+alter table user modify age tinyint(3) default 17 after ys;
+alter table user change age ages tinyint(3) default 17;
+
+insert user(name,salary,ys) value ('lili',6666.66,0);
+update user set name='james' where id=2;
+select name as names from user as users;
+select u.name,u.salary from user as u;
+insert user(name,salary,ys,ages) value ('jim',5555.66,0,30),('joden',9999.2,1,28),('bosh',9542.21,1,30),('nash',3652.21,0,28);
+select ages,count(ages) as count,sum(salary) as sum,avg(salary) as avg,min(salary) as min from user group by ages;
+
+select * from user order by  id desc limit 0,2;
+
+select u.id,u.name,p.pname from user as u right join cms_prov as p on u.address=p.id order by id desc;
